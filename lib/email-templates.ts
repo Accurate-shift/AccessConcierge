@@ -155,13 +155,15 @@ export function renderClientStatusUpdateEmail(opts: {
   quotedPrice: string | null;
   adminResponseNotes: string | null;
 }): { subject: string; html: string } {
-  const statusLabels: Record<RequestRow["status"], string> = {
-    PENDING: "Pending review",
-    IN_REVIEW: "In review",
-    QUOTED: "Quote ready",
-    FULFILLED: "Fulfilled",
-    UNAVAILABLE: "Unavailable",
-  };
+ const statusLabels: Record<RequestRow["status"], string> = {
+  PENDING: "Pending review",
+  REVIEWING: "In review",
+  QUOTED: "Quote ready",
+  APPROVED: "Approved",
+  IN_PROGRESS: "In progress",
+  COMPLETED: "Fulfilled",
+  CANCELLED: "Unavailable",
+};
   const statusLabel = statusLabels[opts.status];
   const subject = `Update on your request ${opts.ticketNumber} — ${statusLabel}`;
 

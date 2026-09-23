@@ -3,19 +3,30 @@
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { LogOut, ImageOff } from "lucide-react";
-import { createBrowserSupabaseClient } from "@/lib/supabase";
+import { createBrowserSupabaseClient } from "@/lib/supabase/client";
 import type { RequestRow, RequestStatus } from "@/types/database";
 import RequestDetailDrawer from "@/components/admin/RequestDetailDrawer";
 import StatusPill from "@/components/admin/StatusPill";
 
-type FilterTab = "All" | "Pending" | "In Review" | "Quoted" | "Fulfilled";
+type FilterTab =
+  | "All"
+  | "Pending"
+  | "In Review"
+  | "Quoted"
+  | "Approved"
+  | "In Progress"
+  | "Completed"
+  | "Cancelled";
 
 const FILTER_TABS: { label: FilterTab; status: RequestStatus | null }[] = [
   { label: "All", status: null },
   { label: "Pending", status: "PENDING" },
-  { label: "In Review", status: "IN_REVIEW" },
+  { label: "In Review", status: "REVIEWING" },
   { label: "Quoted", status: "QUOTED" },
-  { label: "Fulfilled", status: "FULFILLED" },
+  { label: "Approved", status: "APPROVED" },
+  { label: "In Progress", status: "IN_PROGRESS" },
+  { label: "Completed", status: "COMPLETED" },
+  { label: "Cancelled", status: "CANCELLED" },
 ];
 
 function formatDate(iso: string): string {

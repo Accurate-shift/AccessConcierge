@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createServerSupabaseClient } from "@/lib/supabase";
+import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { createAdminSupabaseClient } from "@/lib/supabase-admin";
 import { sendClientStatusUpdateEmail } from "@/lib/email";
 import type { RequestStatus } from "@/types/database";
@@ -8,10 +8,12 @@ export const runtime = "nodejs";
 
 const VALID_STATUSES: RequestStatus[] = [
   "PENDING",
-  "IN_REVIEW",
+  "REVIEWING",
   "QUOTED",
-  "FULFILLED",
-  "UNAVAILABLE",
+ "APPROVED",
+  "IN_PROGRESS",
+  "COMPLETED",
+  "CANCELLED"
 ];
 
 interface UpdateBody {

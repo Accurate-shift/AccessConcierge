@@ -7,10 +7,12 @@ import StatusPill from "@/components/admin/StatusPill";
 
 const STATUS_OPTIONS: RequestStatus[] = [
   "PENDING",
-  "IN_REVIEW",
+  "REVIEWING",
   "QUOTED",
-  "FULFILLED",
-  "UNAVAILABLE",
+  "APPROVED",
+  "IN_PROGRESS",
+  "COMPLETED",
+  "CANCELLED"
 ];
 
 export default function RequestDetailDrawer({

@@ -1,11 +1,13 @@
 export type RequestStatus =
   | "PENDING"
-  | "IN_REVIEW"
+  | "REVIEWING"
   | "QUOTED"
-  | "FULFILLED"
-  | "UNAVAILABLE";
+  | "APPROVED"
+  | "IN_PROGRESS"
+  | "COMPLETED"
+  | "CANCELLED";
 
-export interface RequestRow {
+export type RequestRow = {
   id: string;
   created_at: string;
   ticket_number: string;
@@ -23,7 +25,7 @@ export interface RequestRow {
   status: RequestStatus;
   admin_response_notes: string | null;
   quoted_price: string | null;
-}
+};
 
 export type RequestInsert = {
   id?: string;
@@ -47,16 +49,6 @@ export type RequestInsert = {
 
 export type RequestUpdate = Partial<RequestRow>;
 
-/**
- * Minimal hand-written stand-in for the `supabase gen types typescript`
- * output. Once the project is linked to a live Supabase project, regenerate
- * this with:
- *
- *   npx supabase gen types typescript --project-id <ref> > types/database.ts
- *
- * and re-add the RequestStatus/RequestRow helper aliases above the generated
- * block if you want to keep using them elsewhere in the app.
- */
 export interface Database {
   public: {
     Tables: {
@@ -64,6 +56,7 @@ export interface Database {
         Row: RequestRow;
         Insert: RequestInsert;
         Update: RequestUpdate;
+        Relationships: [];
       };
     };
     Views: Record<string, never>;
@@ -71,5 +64,6 @@ export interface Database {
     Enums: {
       request_status: RequestStatus;
     };
+    CompositeTypes: Record<string, never>;
   };
 }
