@@ -85,10 +85,17 @@ export async function POST(req: NextRequest) {
         upsert: false,
       });
 
-    if (uploadError) {
+      if (uploadError) {
       console.error("Image upload failed:", uploadError);
+      const detail =
+        uploadError instanceof Error
+          ? uploadError.message
+          : JSON.stringify(uploadError);
       return NextResponse.json(
-        { error: "Failed to upload reference image. Please try again." },
+        {
+          error: "Failed to upload reference image. Please try again.",
+          detail,
+        },
         { status: 500 }
       );
     }
