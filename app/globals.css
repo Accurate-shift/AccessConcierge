@@ -2,86 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ================= Tokens (match index.html) ================= */
 :root {
   color-scheme: dark;
+  --bg: #080808;
+  --surface: #101010;
+  --surface-2: #151515;
+  --text: #f5f5f2;
+  --muted: #8d8d88;
+  --line: #292929;
+  --accent: #d8ff3e;
+  --on-accent: #050505;
+  --danger: #ff6b5e;
+  --shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --pill: 999px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-html {
-  background: #0b0b0c;
-  scroll-behavior: smooth;
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f2f1ec;
+  --surface: #ffffff;
+  --surface-2: #e8e7e1;
+  --text: #111111;
+  --muted: #70706b;
+  --line: #d5d4ce;
+  --accent: #111111;
+  --on-accent: #f2f1ec;
+  --danger: #c62b1c;
+  --shadow: 0 16px 40px rgba(0, 0, 0, 0.16);
 }
 
-body {
-  margin: 0;
-  background: #0b0b0c;
-  color: #fff;
-  font-family: var(--font-inter), sans-serif;
+/* ================= Base ================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-button,
-input,
-textarea,
-select {
-  font: inherit;
-}
-
-button {
-  -webkit-tap-highlight-color: transparent;
-}
-
-::selection {
-  background: rgba(212, 175, 55, 0.35);
-  color: #fff;
-}
-
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0b0b0c;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #292929;
-  border-radius: 999px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #3a3a3a;
-}
-
-.bell {
-  position: relative;
-}
-
-.bell::after {
-  content: "";
-  position: absolute;
-  inset: -5px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 999px;
-  opacity: 0;
-  transform: scale(0.8);
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease;
-}
-
-.bell:hover::after {
-  opacity: 1;
-  transform: scale(1);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-  }
-}
+[hidden] {
