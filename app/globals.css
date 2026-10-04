@@ -6,10 +6,82 @@
   color-scheme: dark;
 }
 
+html {
+  background: #0b0b0c;
+  scroll-behavior: smooth;
+}
+
 body {
-  background-color: #0b0b0c;
+  margin: 0;
+  background: #0b0b0c;
+  color: #fff;
+  font-family: var(--font-inter), sans-serif;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
 }
 
 ::selection {
-  background-color: rgba(212, 175, 55, 0.35);
+  background: rgba(212, 175, 55, 0.35);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b0b0c;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #292929;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a3a;
+}
+
+.bell {
+  position: relative;
+}
+
+.bell::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.bell:hover::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
